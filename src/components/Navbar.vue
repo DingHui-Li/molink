@@ -22,8 +22,8 @@
         </el-form-item>
         <el-form-item label="密钥">
           <el-input v-model="aiConfigBackup.apiKey" placeholder="请输入API Key" />
-          <span v-if="defaultKey == aiConfigBackup.apiKey">默认密钥将于2025.6.1失效，请注册 <a
-              href="https://cloud.siliconflow.cn/i/UmLqQHN0" target="_blank" style="color:#FF5722">
+          <span>
+            注册 <a href="https://cloud.siliconflow.cn/i/UmLqQHN0" target="_blank" style="color:#FF5722">
               硅基流动</a>获取密钥</span>
         </el-form-item>
         <el-form-item label="改写说明">

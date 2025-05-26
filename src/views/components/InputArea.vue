@@ -3,7 +3,7 @@
     <span v-for="w in resultText" :key="w">{{ w }}</span>
   </div>
   <el-input :class="['input-area', loading && 'loading']" v-if="!result.length" v-model="inputText" :readonly="loading"
-    autosize type="textarea" placeholder="每一粒字都是未醒的星辰，等待被点亮..." show-word-limit maxlength="8000"></el-input>
+    autosize type="textarea" placeholder="每一粒字都是未醒的星辰，等待被点亮..." show-word-limit maxlength="4000"></el-input>
   <div class="conversioned" v-else>
     <span :class="`${item.delete && 'delete'} ${item.newline && 'newLine'}`" v-for="(item, index) in result"
       @click="showDialog(item, index)">
@@ -33,10 +33,10 @@
   <el-dialog v-model="dialogVisible" width="50%" :close-on-click-modal="false">
     <div style="max-height: 70vh;overflow: auto;">
       <div style="margin-bottom: 10px;">原句：</div>
-      <el-input v-model="currentItem.origin" maxlength="200" placeholder="自由发挥"
+      <el-input v-model="currentItem.origin" maxlength="2000" placeholder="自由发挥"
         input-style="background: rgba(255,255,255,0.1);box-shadow:none;color:#fff" type="textarea" autosize></el-input>
       <div style="margin-top: 20px;margin-bottom: 10px;">改写：</div>
-      <el-input v-model="currentItem.rewrite" maxlength="200" autosize @input="currentItem.retry = true"
+      <el-input v-model="currentItem.rewrite" maxlength="2000" autosize @input="currentItem.retry = true"
         input-style="background: rgba(255,255,255,0.1);box-shadow:none;color:#fff" type="textarea"></el-input>
       <div style="margin-top: 20px;" v-if="currentItem.desc">
         <span class="label">改写说明：</span>

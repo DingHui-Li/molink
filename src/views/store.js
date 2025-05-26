@@ -160,7 +160,7 @@ export async function handleProcess() {
 
           [要求]
           - 不要生成无关的内容；
-          - 严格按照原文分段换行；
+          - 严格按照原文分段换行(现代诗风格时忽略)；
           - 改写力度：${aiConfig.value.strength}
 
           [输出格式]
@@ -174,7 +174,8 @@ export async function handleProcess() {
           ${inputText.value}
           `
       }],
-      stream: true
+      stream: true,
+      timeout: 600000
     })
     let resultStr = ''
 
@@ -229,12 +230,17 @@ export async function handleProcessSentence(sentence) {
           [要求]
           - 不要生成无关的内容；
           - 按照原文分段；
+          - 注意句子在原文中的上下文关系；
           - 改写力度：${aiConfig.value.strength}
 
           [输出格式]
           - 输出格式为JSON对象；
           - 对象格式为：{rewrite:""${aiConfig.value.hasDesc ? ',desc:""' : ""}}；
+          - ${aiConfig.value.strength == "最小干预，最大传承" ? '严格按照原文-改写的格式输出' : ''}；
           - 严格按照以上格式输出；
+
+          [原文]
+          ${inputText.value}
 
           [当前任务]
           基于以下句子，改写生成符合要求的句子：
@@ -270,7 +276,7 @@ export async function handleGetTitle() {
           - 输出格式为字符串；
 
           [当前任务]
-          基于以下文章，生成符合要求的标题：
+          基于以下文章，生成符合要求和风格的标题：
           ${resultPureText.value}
           `
       }],
